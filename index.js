@@ -1,6 +1,6 @@
-import * as FormData from "form-data"
+import * as FormData from 'form-data'
 
-let API_URL = process.env.GRAPHQL_API_URL;
+let API_URL = process.env.GRAPHQL_API_URL || '/admin/api';
 let options = {
   method: 'POST',
   credentials: 'include',
@@ -42,8 +42,9 @@ export const mutate = async mutationOptions => {
     body.append(key, mutationOptions.variables.data[name]);
     delete mutationOptions.variables.data[name];
   }
-
-  return fetch(API_URL, { ...options, body }).then(res => res.json());
+  const clonedOptions = JSON.parse(JSON.stringify(options));
+  if(clonedOptions.headers && clonedOptions.headers['Content-type']) delete clonedOptions.headers['Content-type'];
+  return fetch(API_URL, { ...clonedOptions, body }).then(res => res.json());
 }
 
 export default (url, opts) => {

@@ -1,6 +1,6 @@
 {
-  "name": "@Sylchi/keystone-graphql-client",
-  "version": "1.0.0",
+  "name": "@sylchi/keystone-graphql-client",
+  "version": "1.0.1",
   "description": "Simple graphql fetch client for keystone.js with automatic file upload support. ",
   "main": "index.js",
   "scripts": {
