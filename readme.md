@@ -83,7 +83,7 @@ Mutation
 This package takes 2 arguments for configuration, both are optional. In this example we have 2 different endpoints for authenticated users and normal users. If API url is not set and environment variable `GRAPHQL_API_URL` is not set the url defaults to `/admin/api`.
 By default `credentials` fiels is set to `include`.
 
-  //can have any name
+  	//can have any name
 	import GraphQlClient from '@sylchi/keystone-graphql-client';
 	
 	const apiUrl = 'www.example.com';
