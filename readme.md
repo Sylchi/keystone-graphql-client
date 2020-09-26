@@ -1,6 +1,6 @@
 # keystone-graphql-client
 
-A simple graphql fetch client for frontent clients to access keystone.js based backend. Automatic file upload support included.
+A simple graphql fetch client for frontend clients to access keystone.js based backend. Automatic file upload support included.
 
 
 ## Reason for existence

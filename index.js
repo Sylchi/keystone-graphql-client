@@ -28,7 +28,7 @@ export const mutate = async mutationOptions => {
   if(mutationOptions.variables && mutationOptions.variables.data){
     let index = 1;
     for(const [key, value] of Object.entries(mutationOptions.variables.data)){
-      if(value.constructor === File || value.constructor === Blob){
+      if(!!value && (value.constructor === File || value.constructor === Blob)){
         map[index] = [`variables.data.${key}`];
         index++;
       }
