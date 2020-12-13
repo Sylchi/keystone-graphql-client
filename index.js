@@ -16,6 +16,8 @@ export const query = async queryOptions => {
 }
 
 export const mutate = async mutationOptions => {
+  console.log(mutationOptions);
+
   const body = new FormData();
   
   mutationOptions.query = mutationOptions.mutation;
@@ -24,24 +26,35 @@ export const mutate = async mutationOptions => {
   body.append("operations", JSON.stringify(mutationOptions));
 
   const map = {};
+  let index = 0;
+  const items = [];
 
-  if(mutationOptions.variables && mutationOptions.variables.data){
-    let index = 1;
-    for(const [key, value] of Object.entries(mutationOptions.variables.data)){
+  const mapData = (location, fileIndex) => {
+    for(const [name, value] of Object.entries(location.data)){
       if(!!value && (value.constructor === File || value.constructor === Blob)){
-        map[index] = [`variables.data.${key}`];
+        map[index] = [`variables.data${ !!fileIndex ? `.${fileIndex}.data.`: '.'}${name}`];
+        items[index] = value;
         index++;
       }
     } 
   }
 
+  if(mutationOptions.variables && mutationOptions.variables.data){
+    if(Array.isArray(mutationOptions.variables.data)){
+      for(const [fileIndex, entry] of Object.entries(mutationOptions.variables.data)){
+        mapData(entry, fileIndex);
+      }
+    } else {
+      mapData(mutationOptions.variables);
+    }
+  }
+
   body.append("map", JSON.stringify(map));
 
-  for(const [key, value] of Object.entries(map)){
-    const name = value[0].split('.').pop();
-    body.append(key, mutationOptions.variables.data[name]);
-    delete mutationOptions.variables.data[name];
+  for(const [key, value] of Object.entries(items)){
+    body.append(key, value);
   }
+
   const clonedOptions = JSON.parse(JSON.stringify(options));
   if(clonedOptions.headers && clonedOptions.headers['Content-type']) delete clonedOptions.headers['Content-type'];
   return fetch(API_URL, { ...clonedOptions, body }).then(res => res.json());
