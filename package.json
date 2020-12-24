@@ -1,7 +1,7 @@
 {
   "name": "@sylchi/keystone-graphql-client",
-  "version": "1.0.3",
-  "description": "Simple graphql fetch client for keystone.js with automatic file upload support. ",
+  "version": "1.0.4",
+  "description": "Simple graphql fetch client for keystone.js with automatic file upload support.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -20,7 +20,5 @@
     "url": "https://github.com/Sylchi/keystone-graphql-client/issues"
   },
   "homepage": "https://github.com/Sylchi/keystone-graphql-client#readme",
-  "dependencies": {
-    "form-data": "^3.0.0"
-  }
+  "dependencies": {}
 }

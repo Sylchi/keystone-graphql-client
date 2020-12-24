@@ -1,5 +1,3 @@
-import * as FormData from 'form-data'
-
 let API_URL = process.env.GRAPHQL_API_URL || '/admin/api';
 let options = {
   method: 'POST',
