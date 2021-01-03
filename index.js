@@ -14,8 +14,6 @@ export const query = async queryOptions => {
 }
 
 export const mutate = async mutationOptions => {
-  console.log(mutationOptions);
-
   const body = new FormData();
   
   mutationOptions.query = mutationOptions.mutation;
