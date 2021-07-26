@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 
-let API_URL = process.env.GRAPHQL_API_URL || '/admin/api';
+let API_URL = process.env.GRAPHQL_API_URL || process.env.NEXT_PUBLIC_GRAPHQL_API_URL || '/admin/api';
 let options = {
   method: 'POST',
   credentials: 'include',
