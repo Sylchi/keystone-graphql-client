@@ -18,7 +18,7 @@ or
 
 ## Usage
 
-For convinience it will take the API url from a GRAPHQL_API_URL enviroment variable. If that is set its just as simple as importing it and using it right away as you would use apollo client.
+For convinience it will take the API url from a GRAPHQL_API_URL or NEXT_PUBLIC_GRAPHQL_API_URL enviroment variable. If that is set its just as simple as importing it and using it right away as you would use apollo client.
 
 Query:
 
@@ -80,7 +80,7 @@ Mutation
 
 ## Configuration
 
-This package takes 2 arguments for configuration, both are optional. In this example we have 2 different endpoints for authenticated users and normal users. If API url is not set and environment variable `GRAPHQL_API_URL` is not set the url defaults to `/admin/api`.
+This package takes 2 arguments for configuration, both are optional. In this example we have 2 different endpoints for authenticated users and normal users. If API url is not set and environment variables `GRAPHQL_API_URL` or `NEXT_PUBLIC_GRAPHQL_API_URL` are not set the url defaults to `/admin/api`.
 By default `credentials` fiels is set to `include`.
 
   	//can have any name

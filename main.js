@@ -1,11 +1,13 @@
-let API_URL = process.env.GRAPHQL_API_URL || process.env.NEXT_PUBLIC_GRAPHQL_API_URL || '/admin/api';
+const fetch = require('node-fetch');
+
+let API_URL = process.env.GRAPHQL_API_URL || '/admin/api';
 let options = {
   method: 'POST',
   credentials: 'include',
   headers: {}
 }
 
-export const query = async queryOptions => {
+const query = async queryOptions => {
   const clonedOptions = JSON.parse(JSON.stringify(options));
   if(!clonedOptions.headers) clonedOptions.headers = {};
   clonedOptions.headers['Content-type'] = 'application/json';
@@ -13,7 +15,7 @@ export const query = async queryOptions => {
   return fetch(API_URL, clonedOptions).then(res => res.json());
 }
 
-export const mutate = async mutationOptions => {
+const mutate = async mutationOptions => {
   const body = new FormData();
   
   mutationOptions.query = mutationOptions.mutation;
@@ -56,9 +58,10 @@ export const mutate = async mutationOptions => {
   return fetch(API_URL, { ...clonedOptions, body }).then(res => res.json());
 }
 
-export default (url, opts) => {
+const client = (url, opts) => {
   if(url) API_URL = url;
   if(opts) options = opts;
   return { query, mutate }
 }
 
+module.exports = { client, query, mutate }
